@@ -1,4 +1,5 @@
 """Сериализаторы для проекта lizard_bot."""
+
 from rest_framework import serializers
 
 
