@@ -1,5 +1,6 @@
-#!/usr/bin/env python
+
 """Утилита командной строки Django для административных задач."""
+
 import os
 import sys
 

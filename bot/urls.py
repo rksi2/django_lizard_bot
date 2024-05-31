@@ -1,4 +1,5 @@
 """Маршрутизация URL для приложения bot."""
+
 from django.urls import path
 
 from .views import FileListView, ScheduleTeacherView, ServiceView

@@ -14,7 +14,8 @@ def get_filenames() -> list[dict]:
     scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
     credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=scopes,
+        service_account_file,
+        scopes=scopes,
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -53,7 +54,8 @@ def process_excel(file_content: BytesIO, group_name: str) -> list[tuple[str, str
 
 
 def process_excel2(
-    file_content: BytesIO, teacher_name: str,
+    file_content: BytesIO,
+    teacher_name: str,
 ) -> list[tuple[str, str | int, str, str, bool]]:
     """Обрабатывает содержимое Excel файла, возвращая список данных для заданного преподавателя."""
     wb = openpyxl.load_workbook(file_content)
@@ -130,7 +132,8 @@ def service(name: str, group: str) -> str:
     scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
     credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=scopes,
+        service_account_file,
+        scopes=scopes,
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -169,7 +172,8 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
     credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=scopes,
+        service_account_file,
+        scopes=scopes,
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
