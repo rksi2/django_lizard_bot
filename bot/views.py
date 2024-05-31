@@ -8,7 +8,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .disk import get_filenames, search_schedule_by_teacher, service
+from .api import get_filenames, search_schedule_by_teacher, service
 from .serializers import ScheduleRequestSerializer, ScheduleTeacherSeriaizer
 
 # Настройка логирования
