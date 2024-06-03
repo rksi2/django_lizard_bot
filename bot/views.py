@@ -33,7 +33,7 @@ class ServiceView(APIView):
                         {'error': 'No data returned from service.'},
                         status=status.HTTP_204_NO_CONTENT,
                     )
-                logger.info(f"Returning result: {result}")
+                logger.info(f'Returning result: {result}')
 
                 return Response(result, status=status.HTTP_200_OK)
             except ValidationError as e:
@@ -53,7 +53,7 @@ class ServiceView(APIView):
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
 
-        logger.error(f"Invalid data: {serializer.errors}")
+        logger.error(f'Invalid data: {serializer.errors}')
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
