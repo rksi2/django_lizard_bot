@@ -33,7 +33,8 @@ class ServiceView(APIView):
                         {'error': 'No data returned from service.'},
                         status=status.HTTP_204_NO_CONTENT,
                     )
-                logger.info(result)
+                logger.info(f"Returning result: {result}")
+
                 return Response(result, status=status.HTTP_200_OK)
             except ValidationError as e:
                 # Логирование ошибки
@@ -42,14 +43,18 @@ class ServiceView(APIView):
                     {'error': str(e)},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-            except Exception:
+            except Exception as ex:
                 # Логирование ошибки с трассировкой стека
-                logger.exception('Неожиданная ошибка в функции service')
+
+                logger.exception(f'Неожиданная ошибка в функции service: {ex}')
+
                 return Response(
                     {'error': 'Internal server error.'},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
-        logger.error(serializer.errors)
+
+        logger.error(f"Invalid data: {serializer.errors}")
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -78,9 +83,11 @@ class ScheduleTeacherView(APIView):
                     {'error': str(e)},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-            except Exception:
+            except Exception as ex:
                 # Логирование ошибки с трассировкой стека
-                logger.exception('Неожиданная ошибка в функции service')
+
+                logger.exception(f'Неожиданная ошибка в функции service:{ex}')
+
                 return Response(
                     {'error': 'Internal server error.'},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
