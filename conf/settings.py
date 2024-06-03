@@ -1,24 +1,16 @@
 """Модуль настроек бота."""
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-from decouple import config
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = config(
-    'ALLOWED_HOSTS', default=[], cast=lambda v: [s.strip() for s in v.split(',')],
-)
 
 # Application definition
 
@@ -112,3 +104,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#
+# Virtual environments
+#
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+SECRET_KEY = os.getenv('SECRET_KEY')
