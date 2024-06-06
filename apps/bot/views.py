@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from .api import get_filenames, search_schedule_by_teacher, service
 from .serializers import ScheduleRequestSerializer, ScheduleTeacherSeriaizer
 
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 class ServiceView(APIView):
@@ -34,14 +34,14 @@ class ServiceView(APIView):
 
                 return Response(result, status=status.HTTP_200_OK)
             except ValidationError as e:
-                logger.exception('Ошибка в функции service')
+                LOGGER.exception('Ошибка в функции service')
                 return Response(
                     {'error': str(e)},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             except Exception as ex:
 
-                logger.exception(f'Неожиданная ошибка в функции service: {ex}')
+                LOGGER.exception(f'Неожиданная ошибка в функции service: {ex}')
 
                 return Response(
                     {'error': 'Internal server error.'},
@@ -70,14 +70,14 @@ class ScheduleTeacherView(APIView):
                     )
                 return Response(result, status=status.HTTP_200_OK)
             except ValidationError as e:
-                logger.exception('Ошибка в функции service')
+                LOGGER.exception('Ошибка в функции service')
                 return Response(
                     {'error': str(e)},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             except Exception as ex:
 
-                logger.exception(f'Неожиданная ошибка в функции service:{ex}')
+                LOGGER.exception(f'Неожиданная ошибка в функции service:{ex}')
 
                 return Response(
                     {'error': 'Internal server error.'},
