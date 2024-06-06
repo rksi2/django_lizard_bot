@@ -8,23 +8,44 @@ from django.conf import settings
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
+_EXTENDED_TIME_MAPPING = {
+    1: '8:00 - 9:30',
+    2: '9:40 - 11:10',
+    3: '11:30 - 13:00',
+    4: '14:10 - 15:40',
+    5: '16:00 - 17:30',
+    6: '17:40 - 19:10',
+}
+
+_FOLDER_ID = '19yyXXullGGMIT3XISiZ33wkDxHJy0zvb'
+
+_SCOPES = ['https://www.googleapis.com/auth/drive']
+
+_TIME_MAPPING = {
+    1: '8:00 - 9:30',
+    2: '9:40 - 11:10',
+    3: '11:30 - 13:00',
+    4: '13:10 - 14:40',
+    5: '15:00 - 16:30',
+    6: '16:40 - 18:10',
+    7: '18:20 - 19:50',
+}
+
 
 def get_filenames() -> list[dict]:
     """Получает список файлов с Google Drive."""
-    scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file,
-        scopes=scopes,
+        scopes=_SCOPES,
 
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
-    folder_id = '19yyXXullGGMIT3XISiZ33wkDxHJy0zvb'
     results = (
         drive_service.files()
         .list(
-            q=f"'{folder_id}' in parents",
+            q=f"'{_FOLDER_ID}' in parents",
             fields='nextPageToken, files(id, name)',
         )
         .execute()
@@ -79,23 +100,6 @@ def process_excel2(
 
 def form_schedule(schedule: str) -> str:
     """Формирует текст расписания, добавляя к каждому занятию время его проведения."""
-    time_mapping = {
-        1: '8:00 - 9:30',
-        2: '9:40 - 11:10',
-        3: '11:30 - 13:00',
-        4: '13:10 - 14:40',
-        5: '15:00 - 16:30',
-        6: '16:40 - 18:10',
-        7: '18:20 - 19:50',
-    }
-    extended_time_mapping = {
-        1: '8:00 - 9:30',
-        2: '9:40 - 11:10',
-        3: '11:30 - 13:00',
-        4: '14:10 - 15:40',
-        5: '16:00 - 17:30',
-        6: '17:40 - 19:10',
-    }
     schedule_text = schedule.split('\n')
     class_hour_day = any('Классный час' in line for line in schedule_text)
 
@@ -103,12 +107,12 @@ def form_schedule(schedule: str) -> str:
         schedule_text_str = ''
         if line.strip() and line[0].isdigit():
             pair_number = int(line[0])
-            if class_hour_day and pair_number in time_mapping:
+            if class_hour_day and pair_number in _TIME_MAPPING:
                 schedule_text_str = (
-                    '🕒 ' + schedule_text[i] + f' {extended_time_mapping[pair_number]}'
+                    '🕒 ' + schedule_text[i] + f' {_EXTENDED_TIME_MAPPING[pair_number]}'
                 )
-            elif pair_number in time_mapping:
-                schedule_text_str = '🕒 ' + schedule_text[i] + f' {time_mapping[pair_number]}'
+            elif pair_number in _TIME_MAPPING:
+                schedule_text_str = '🕒 ' + schedule_text[i] + f' {_TIME_MAPPING[pair_number]}'
             schedule_text[i] = schedule_text_str
         elif 'Классный час' in line:
             schedule_text[i] = '🕒 ' + line
@@ -130,10 +134,9 @@ def service(name: str, group: str) -> str:
         return 'Файл не найден.'
 
     group_name = group.upper()
-    scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=scopes,
+        service_account_file, scopes=_SCOPES,
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -169,10 +172,9 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     if chosen_file is None:
         return 'Файл не найден.'
 
-    scopes = ['https://www.googleapis.com/auth/drive']
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=scopes,
+        service_account_file, scopes=_SCOPES,
 
     )
     drive_service = build('drive', 'v3', credentials=credentials)
