@@ -38,8 +38,8 @@ def get_filenames() -> list[dict]:
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file,
         scopes=_SCOPES,
-
     )
+
     drive_service = build('drive', 'v3', credentials=credentials)
 
     results = (
@@ -50,28 +50,35 @@ def get_filenames() -> list[dict]:
         )
         .execute()
     )
+
     return results.get('files', [])
 
 
 def download_file(file_id: str, drive_service: Any) -> BytesIO:
     """Скачивает файл с Google Drive."""
+
     request = drive_service.files().get_media(fileId=file_id)
     return BytesIO(request.execute())
 
 
 def process_excel(file_content: BytesIO, group_name: str) -> list[tuple[str, str | int, str, bool]]:
     """Обрабатывает содержимое Excel файла, возвращая список данных для заданной группы."""
+
     wb = openpyxl.load_workbook(file_content)
     results = []
 
     for sheet in wb.worksheets:
         for row in sheet.iter_rows(min_row=2, values_only=True):
+
             class_hour = 'Классный час' in row
             for idx in range(1, len(row), 3):
+
                 if row[idx] == group_name:
+
                     room_number = row[idx - 1]
                     teacher_name = row[idx + 1]
                     results.append((sheet.title, room_number, teacher_name, class_hour))
+
     return results
 
 
@@ -80,47 +87,59 @@ def process_excel2(
 
 ) -> list[tuple[str, str | int, str, str, bool]]:
     """Обрабатывает содержимое Excel файла, возвращая список данных для заданного преподавателя."""
+
     wb = openpyxl.load_workbook(file_content)
     results = []
     teacher_last_name = teacher_name.strip().lower()
 
     for sheet in wb.worksheets:
         for row in sheet.iter_rows(min_row=2, values_only=True):
+
             class_hour = 'Классный час' in row
             for idx in range(2, len(row), 3):
                 if row[idx] and row[idx].strip().lower().startswith(teacher_last_name):
+
                     room_number = row[idx - 2]
                     group_name = row[idx - 1]
                     full_teacher_name = row[idx]
+
                     results.append(
                         (sheet.title, room_number, group_name, full_teacher_name, class_hour),
                     )
+
     return results
 
 
 def form_schedule(schedule: str) -> str:
     """Формирует текст расписания, добавляя к каждому занятию время его проведения."""
+
     schedule_text = schedule.split('\n')
     class_hour_day = any('Классный час' in line for line in schedule_text)
 
     for i, line in enumerate(schedule_text):
         schedule_text_str = ''
+
         if line.strip() and line[0].isdigit():
             pair_number = int(line[0])
+
             if class_hour_day and pair_number in _TIME_MAPPING:
                 schedule_text_str = (
                     '🕒 ' + schedule_text[i] + f' {_EXTENDED_TIME_MAPPING[pair_number]}'
                 )
+
             elif pair_number in _TIME_MAPPING:
                 schedule_text_str = '🕒 ' + schedule_text[i] + f' {_TIME_MAPPING[pair_number]}'
             schedule_text[i] = schedule_text_str
+
         elif 'Классный час' in line:
             schedule_text[i] = '🕒 ' + line
+
     return '\n'.join(schedule_text)
 
 
 def service(name: str, group: str) -> str:
     """Предоставляет расписание для заданной группы."""
+
     files = get_filenames()
 
     chosen_file_name = name
@@ -135,12 +154,14 @@ def service(name: str, group: str) -> str:
 
     group_name = group.upper()
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
+
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=_SCOPES,
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
     file_content = download_file(chosen_file['id'], drive_service)
+
     results = process_excel(file_content, group_name)
 
     if not results:
@@ -148,22 +169,26 @@ def service(name: str, group: str) -> str:
 
     message = []
     for sheet_title, room_number_value, teacher_name, _class_hour in results:
+
         room_number = room_number_value
         if isinstance(room_number, float):
+
             room_number = int(room_number)
         message.append(
             f'\n{sheet_title},🔑 Кабинет: {room_number},💼 Преподаватель: {teacher_name}\n',
         )
     message2 = f'{group_name.upper()}\n' + ''.join(message).replace(',', '\n')
+
     return form_schedule(message2)
 
 
 def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     """Предоставляет расписание для заданного преподавателя."""
-    files = get_filenames()
 
+    files = get_filenames()
     chosen_file_name = name
     chosen_file = None
+
     for file in files:
         if file['name'] == chosen_file_name + '.xlsx':
             chosen_file = file
@@ -175,7 +200,6 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=_SCOPES,
-
     )
     drive_service = build('drive', 'v3', credentials=credentials)
 
@@ -187,9 +211,12 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
 
     message = []
     for sheet_title, room_number_value, group_name, _full_teacher_name, _class_hour in results:
+
         room_number = room_number_value
         if isinstance(room_number, float):
+
             room_number = int(room_number)
         message.append(f'\n{sheet_title},🔑 Кабинет: {room_number},💼 Группа: {group_name}\n')
     message2 = f'{teacher_name.capitalize()}\n' + ''.join(message).replace(',', '\n')
+
     return form_schedule(message2)
