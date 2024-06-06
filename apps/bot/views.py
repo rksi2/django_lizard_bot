@@ -21,7 +21,6 @@ class ServiceView(APIView):
     @staticmethod
     def get(request: Request) -> Response:
         """Обрабатывает POST-запросы с датой и именем группы, возвращая расписание."""
-        logger.info(request.data)
         serializer = ScheduleRequestSerializer(data=request.query_params)
         if serializer.is_valid():
             name = serializer.validated_data['date']
@@ -33,7 +32,6 @@ class ServiceView(APIView):
                         {'error': 'No data returned from service.'},
                         status=status.HTTP_204_NO_CONTENT,
                     )
-                logger.info(f"Returning result: {result}")
 
                 return Response(result, status=status.HTTP_200_OK)
             except ValidationError as e:
@@ -52,8 +50,6 @@ class ServiceView(APIView):
                     {'error': 'Internal server error.'},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
-
-        logger.error(f"Invalid data: {serializer.errors}")
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
