@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from .views import FileListView, ScheduleTeacherView, ServiceView
+from apps.bot.views import FileListView, ScheduleTeacherView, ServiceView
 
 urlpatterns = [
     path('files/', FileListView.as_view(), name='file-list'),
