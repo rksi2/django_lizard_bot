@@ -4,7 +4,7 @@ lint.select = ["ALL"]
 
 lint.ignore = [
     "ANN401",  # any-type
-    "ARG004",
+    "ARG004", # unused-static-method-argument
     "D205", # blank-line-after-summary
     "N818", # error-suffix-on-exception-name
     "RUF001", # ambiguous-unicode-character-string
