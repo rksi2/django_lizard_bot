@@ -41,10 +41,10 @@ class ServiceView(APIView):
                 )
             except Exception as ex:
 
-                LOGGER.exception(f'Неожиданная ошибка в функции service: {ex}')
+                LOGGER.exception('Неожиданная ошибка в функции service')
 
                 return Response(
-                    {'error': 'Internal server error.'},
+                    {'error': str(ex)},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
 
@@ -77,10 +77,10 @@ class ScheduleTeacherView(APIView):
                 )
             except Exception as ex:
 
-                LOGGER.exception(f'Неожиданная ошибка в функции service:{ex}')
+                LOGGER.exception('Неожиданная ошибка в функции service')
 
                 return Response(
-                    {'error': 'Internal server error.'},
+                    {'error': str(ex)},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
