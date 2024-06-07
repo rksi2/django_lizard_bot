@@ -12,7 +12,7 @@ from googleapiclient.discovery import build
 def get_filenames() -> list[dict]:
     """Получает список файлов с Google Drive."""
     scopes = ['https://www.googleapis.com/auth/drive']
-    service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
+    service_account_file = settings.BASE_DIR / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file,
         scopes=scopes,
@@ -131,7 +131,7 @@ def service(name: str, group: str) -> str:
 
     group_name = group.upper()
     scopes = ['https://www.googleapis.com/auth/drive']
-    service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
+    service_account_file = settings.BASE_DIR / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=scopes,
     )
@@ -170,7 +170,7 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
         return 'Файл не найден.'
 
     scopes = ['https://www.googleapis.com/auth/drive']
-    service_account_file = settings.BASE_DIR / 'bot' / 'data' / 'lizardbot-423609-d1f6e02ed0a6.json'
+    service_account_file = settings.BASE_DIR / 'bot' / 'data' / settings.API_ACCOUNT
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=scopes,
 
