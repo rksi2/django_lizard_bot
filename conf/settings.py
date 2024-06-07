@@ -108,6 +108,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #
 # Virtual environments
 #
+API_ACCOUNT = os.getenv('API_ACCOUNT')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
