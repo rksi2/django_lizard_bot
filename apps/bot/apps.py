@@ -7,4 +7,4 @@ class BotConfig(AppConfig):
     """Конфигурационный класс для приложения бота в проекте Lizard Bot."""
 
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'bot'
+    name = 'apps.bot'
