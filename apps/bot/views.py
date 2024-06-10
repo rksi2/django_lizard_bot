@@ -8,7 +8,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.bot.api import get_filenames, search_schedule_by_teacher, service
+from apps.bot.utils import get_filenames, search_schedule_by_teacher, service
 from apps.bot.serializers import ScheduleRequestSerializer, ScheduleTeacherSeriaizer
 
 LOGGER = logging.getLogger(__name__)
