@@ -19,7 +19,7 @@ class ServiceView(APIView):
 
     @staticmethod
     def get(request: Request) -> Response:
-        """Обрабатывает POST-запросы с датой и именем группы, возвращая расписание."""
+        """Обрабатывает GET-запросы с датой и именем группы, возвращая расписание."""
         serializer = ScheduleRequestSerializer(data=request.query_params)
         if serializer.is_valid():
             name = serializer.validated_data['date']
@@ -56,7 +56,7 @@ class ScheduleTeacherView(APIView):
 
     @staticmethod
     def get(request: Request) -> Response:
-        """Обрабатывает POST-запросы с датой и именем преподавателя, возвращая расписание."""
+        """Обрабатывает GET-запросы с датой и именем преподавателя, возвращая расписание."""
         serializer = ScheduleTeacherSeriaizer(data=request.query_params)
         if serializer.is_valid():
             date = serializer.validated_data['date']
