@@ -5,7 +5,7 @@ from typing import Any
 
 import openpyxl
 from django.conf import settings
-from google.oauth2 import service_account
+from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 _EXTENDED_TIME_MAPPING = {
@@ -32,15 +32,18 @@ _TIME_MAPPING = {
 }
 
 
-def get_filenames() -> list[dict]:
-    """Получает список файлов с Google Drive."""
+def get_credentials() -> Credentials:
+    """Возвращает учетные данные из файла учетной записи службы с заданными областями."""
     service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
-    credentials = service_account.Credentials.from_service_account_file(
+    return Credentials.from_service_account_file(
         service_account_file,
         scopes=_SCOPES,
     )
 
-    drive_service = build('drive', 'v3', credentials=credentials)
+
+def get_filenames() -> list[dict]:
+    """Получает список файлов с Google Drive."""
+    drive_service = build('drive', 'v3', credentials=get_credentials())
 
     results = (
         drive_service.files()
@@ -153,12 +156,8 @@ def service(name: str, group: str) -> str:
         return 'Файл не найден.'
 
     group_name = group.upper()
-    service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
 
-    credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=_SCOPES,
-    )
-    drive_service = build('drive', 'v3', credentials=credentials)
+    drive_service = build('drive', 'v3', credentials=get_credentials())
 
     file_content = download_file(chosen_file['id'], drive_service)
 
@@ -197,11 +196,7 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     if chosen_file is None:
         return 'Файл не найден.'
 
-    service_account_file = settings.BASE_DIR / 'apps' / 'bot' / 'data' / settings.API_ACCOUNT
-    credentials = service_account.Credentials.from_service_account_file(
-        service_account_file, scopes=_SCOPES,
-    )
-    drive_service = build('drive', 'v3', credentials=credentials)
+    drive_service = build('drive', 'v3', credentials=get_credentials())
 
     file_content = download_file(chosen_file['id'], drive_service)
     results = process_excel2(file_content, teacher_name)
