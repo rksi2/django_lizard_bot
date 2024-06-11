@@ -8,6 +8,8 @@ from django.conf import settings
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
+from apps.bot.models import Educator
+
 _EXTENDED_TIME_MAPPING = {
     1: '8:00 - 9:30',
     2: '9:40 - 11:10',
@@ -215,3 +217,14 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     message2 = f'{teacher_name.capitalize()}\n' + ''.join(message).replace(',', '\n')
 
     return form_schedule(message2)
+
+
+def get_fio(value):
+    """Предоставляет ФИО для заданной пользователем фамилии преподавателя."""
+
+    try:
+        educator = Educator.objects.get(last_name__icontains=value.capitalize())
+        return f'{educator.last_name} {educator.first_name} {educator.middle_name}'
+    except Educator.DoesNotExist:
+        return 'Неверно введена фамилия преподавателя!'
+

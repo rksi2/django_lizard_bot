@@ -15,3 +15,8 @@ class ScheduleTeacherSeriaizer(serializers.Serializer):
 
     date = serializers.CharField()
     group = serializers.CharField()
+
+
+class FioSerializer(serializers.Serializer):
+
+    fio = serializers.CharField()
