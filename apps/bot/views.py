@@ -8,8 +8,9 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.bot.utils import get_filenames, search_schedule_by_teacher, service
-from apps.bot.serializers import ScheduleRequestSerializer, ScheduleTeacherSeriaizer
+from apps.bot.utils import get_filenames, get_fio, search_schedule_by_teacher, service
+from apps.bot.serializers import FioSerializer, ScheduleRequestSerializer, ScheduleTeacherSeriaizer
+
 
 LOGGER = logging.getLogger(__name__)
 
@@ -94,3 +95,36 @@ class FileListView(APIView):
         """Обрабатывает GET-запросы, возвращая список файлов с Google Drive."""
         files = get_filenames()
         return Response(files)
+
+
+class FioView(APIView):
+    @staticmethod
+    def get(request: Request) -> Response:
+        serializer = FioSerializer(data=request.query_params)
+        if serializer.is_valid():
+            fio = serializer.validated_data['fio']
+            try:
+                result = get_fio(fio)
+                if result is None:
+                    return Response(
+                        {'error': 'No data returned from service.'},
+                        status=status.HTTP_204_NO_CONTENT,
+                    )
+
+                return Response(result, status=status.HTTP_200_OK)
+
+            except ValidationError as e:
+                LOGGER.exception('Ошибка в функции service')
+                return Response(
+                    {'error': str(e)},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            except Exception as ex:
+                LOGGER.exception('Неожиданная ошибка в функции service')
+
+                return Response(
+                    {'error': str(ex)},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
