@@ -8,7 +8,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.bot.api import get_filenames, search_schedule_by_teacher, service
+from apps.bot.utils import get_filenames, search_schedule_by_teacher, service, get_credentials
 from apps.bot.serializers import ScheduleRequestSerializer, ScheduleTeacherSeriaizer
 
 LOGGER = logging.getLogger(__name__)
@@ -92,5 +92,6 @@ class FileListView(APIView):
     @staticmethod
     def get(request: Request) -> Response:
         """Обрабатывает GET-запросы, возвращая список файлов с Google Drive."""
-        files = get_filenames()
+        drive_service = get_credentials()
+        files = get_filenames(drive_service)
         return Response(files)
