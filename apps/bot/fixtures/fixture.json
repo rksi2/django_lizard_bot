@@ -1,0 +1,596 @@
+[
+    {
+        "model": "bot.educator",
+        "pk": 1,
+        "fields": {
+            "first_name": "Мария",
+            "last_name": "Арутюнян",
+            "middle_name": "Михайловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 2,
+        "fields": {
+            "first_name": "Евгения",
+            "last_name": "Бурда",
+            "middle_name": "Григорьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 3,
+        "fields": {
+            "first_name": "Евгения",
+            "last_name": "Гапоненко",
+            "middle_name": "Фёдоровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 4,
+        "fields": {
+            "first_name": "Сергей",
+            "last_name": "Дегтярев",
+            "middle_name": "Сергеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 5,
+        "fields": {
+            "first_name": "Сергей",
+            "last_name": "Корбан",
+            "middle_name": "Николаевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 6,
+        "fields": {
+            "first_name": "Галина",
+            "last_name": "Куракова",
+            "middle_name": "Владимировна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 7,
+        "fields": {
+            "first_name": "Маргарита",
+            "last_name": "Лебедева",
+            "middle_name": "Викторовна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 8,
+        "fields": {
+            "first_name": "Полина",
+            "last_name": "Махаева",
+            "middle_name": "Анатольевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 9,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Новосельцева",
+            "middle_name": "Федоровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 10,
+        "fields": {
+            "first_name": "Алексей",
+            "last_name": "Сычев",
+            "middle_name": "Максимович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 11,
+        "fields": {
+            "first_name": "Сергей",
+            "last_name": "Сулавко",
+            "middle_name": "Николаевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 12,
+        "fields": {
+            "first_name": "Игорь",
+            "last_name": "Турянский",
+            "middle_name": "Павлович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 13,
+        "fields": {
+            "first_name": "Алиса",
+            "last_name": "Чубарова",
+            "middle_name": "Борисовна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 14,
+        "fields": {
+            "first_name": "Светлана",
+            "last_name": "Чумаченко",
+            "middle_name": "Геннадьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 15,
+        "fields": {
+            "first_name": "Наталья",
+            "last_name": "Шемякина",
+            "middle_name": "Юрьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 16,
+        "fields": {
+            "first_name": "Анна",
+            "last_name": "Асташевская",
+            "middle_name": "Владимировна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 17,
+        "fields": {
+            "first_name": "Ирина",
+            "last_name": "Бойнар",
+            "middle_name": "Николаевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 18,
+        "fields": {
+            "first_name": "Людмила",
+            "last_name": "Григорьева",
+            "middle_name": "Федоровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 19,
+        "fields": {
+            "first_name": "Алексей",
+            "last_name": "Гузов",
+            "middle_name": "Валентинович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 20,
+        "fields": {
+            "first_name": "Дарья",
+            "last_name": "Карачевцева",
+            "middle_name": "Геннадьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 21,
+        "fields": {
+            "first_name": "Ольга",
+            "last_name": "Копылова",
+            "middle_name": "Васильевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 22,
+        "fields": {
+            "first_name": "Лианна",
+            "last_name": "Хачикян",
+            "middle_name": "Григоревна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 23,
+        "fields": {
+            "first_name": "Татьяна",
+            "last_name": "Прыгунова",
+            "middle_name": "Александровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 24,
+        "fields": {
+            "first_name": "Дмитрий",
+            "last_name": "Бельчич",
+            "middle_name": "Сергеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 25,
+        "fields": {
+            "first_name": "Екатерина",
+            "last_name": "Войнова",
+            "middle_name": "Сергеевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 26,
+        "fields": {
+            "first_name": "Анна",
+            "last_name": "Демиденко",
+            "middle_name": "Владимировна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 27,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Дозорова",
+            "middle_name": "Владимировна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 28,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Кротенко",
+            "middle_name": "Михайловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 29,
+        "fields": {
+            "first_name": "Ирина",
+            "last_name": "Леонова",
+            "middle_name": "Юрьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 30,
+        "fields": {
+            "first_name": "Лариса",
+            "last_name": "Лютова",
+            "middle_name": "Константиновна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 31,
+        "fields": {
+            "first_name": "Ольга",
+            "last_name": "Манакова",
+            "middle_name": "Петровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 32,
+        "fields": {
+            "first_name": "Инга",
+            "last_name": "Мальцева",
+            "middle_name": "Евгеньевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 33,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Наливайко",
+            "middle_name": "Павловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 34,
+        "fields": {
+            "first_name": "Олеся",
+            "last_name": "Наскалова",
+            "middle_name": "Викторовна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 35,
+        "fields": {
+            "first_name": "Лариса",
+            "last_name": "Небратенко",
+            "middle_name": "Викторовна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 36,
+        "fields": {
+            "first_name": "Мария",
+            "last_name": "Пивнева",
+            "middle_name": "Анатольевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 37,
+        "fields": {
+            "first_name": "Маргарита",
+            "last_name": "Петрова",
+            "middle_name": "Евгеньевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 38,
+        "fields": {
+            "first_name": "Оксана",
+            "last_name": "Ревнивцева",
+            "middle_name": "Александровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 39,
+        "fields": {
+            "first_name": "Алексей",
+            "last_name": "Серов",
+            "middle_name": "Олегович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 40,
+        "fields": {
+            "first_name": "Валерия",
+            "last_name": "Соколян",
+            "middle_name": "Валерьевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 41,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Ужегова",
+            "middle_name": "Александровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 42,
+        "fields": {
+            "first_name": "Анатолий",
+            "last_name": "Фищук",
+            "middle_name": "Иванович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 43,
+        "fields": {
+            "first_name": "Алексей",
+            "last_name": "Иванов",
+            "middle_name": "Петрович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 44,
+        "fields": {
+            "first_name": "Иван",
+            "last_name": "Петров",
+            "middle_name": "Сергеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 45,
+        "fields": {
+            "first_name": "Николай",
+            "last_name": "Сидоров",
+            "middle_name": "Иванович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 46,
+        "fields": {
+            "first_name": "Владимир",
+            "last_name": "Кузнецов",
+            "middle_name": "Алексеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 47,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Смирнова",
+            "middle_name": "Владимировна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 48,
+        "fields": {
+            "first_name": "Сергей",
+            "last_name": "Волков",
+            "middle_name": "Дмитриевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 49,
+        "fields": {
+            "first_name": "Анна",
+            "last_name": "Соловьева",
+            "middle_name": "Игоревна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 50,
+        "fields": {
+            "first_name": "Максим",
+            "last_name": "Федоров",
+            "middle_name": "Николаевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 51,
+        "fields": {
+            "first_name": "Ирина",
+            "last_name": "Морозова",
+            "middle_name": "Александровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 52,
+        "fields": {
+            "first_name": "Дмитрий",
+            "last_name": "Зайцев",
+            "middle_name": "Сергеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 53,
+        "fields": {
+            "first_name": "Ольга",
+            "last_name": "Семёнова",
+            "middle_name": "Павловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 54,
+        "fields": {
+            "first_name": "Павел",
+            "last_name": "Егоров",
+            "middle_name": "Викторович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 55,
+        "fields": {
+            "first_name": "Наталья",
+            "last_name": "Тихонова",
+            "middle_name": "Михайловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 56,
+        "fields": {
+            "first_name": "Александр",
+            "last_name": "Соболев",
+            "middle_name": "Борисович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 57,
+        "fields": {
+            "first_name": "Людмила",
+            "last_name": "Крылова",
+            "middle_name": "Петровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 58,
+        "fields": {
+            "first_name": "Игорь",
+            "last_name": "Мельников",
+            "middle_name": "Олегович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 59,
+        "fields": {
+            "first_name": "Мария",
+            "last_name": "Николаева",
+            "middle_name": "Александровна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 60,
+        "fields": {
+            "first_name": "Татьяна",
+            "last_name": "Гаврилова",
+            "middle_name": "Евгеньевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 61,
+        "fields": {
+            "first_name": "Олег",
+            "last_name": "Романов",
+            "middle_name": "Иванович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 62,
+        "fields": {
+            "first_name": "Екатерина",
+            "last_name": "Орлова",
+            "middle_name": "Дмитриевна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 63,
+        "fields": {
+            "first_name": "Анна",
+            "last_name": "Алексеева",
+            "middle_name": "Михайловна"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 64,
+        "fields": {
+            "first_name": "Николай",
+            "last_name": "Лебедев",
+            "middle_name": "Сергеевич"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 65,
+        "fields": {
+            "first_name": "Андрей",
+            "last_name": "Киселев",
+            "middle_name": "Александрович"
+        }
+    },
+    {
+        "model": "bot.educator",
+        "pk": 66,
+        "fields": {
+            "first_name": "Оксана",
+            "last_name": "Ильина",
+            "middle_name": "Владимировна"
+        }
+    }
+]
