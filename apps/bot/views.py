@@ -8,9 +8,8 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.bot.utils import get_filenames, get_fio, search_schedule_by_teacher, service
 from apps.bot.serializers import FioSerializer, ScheduleRequestSerializer, ScheduleTeacherSeriaizer
-
+from apps.bot.utils import get_filenames, get_fio, search_schedule_by_teacher, service
 
 LOGGER = logging.getLogger(__name__)
 
@@ -34,6 +33,7 @@ class ServiceView(APIView):
                     )
 
                 return Response(result, status=status.HTTP_200_OK)
+
             except ValidationError as e:
                 LOGGER.exception('Ошибка в функции service')
                 return Response(
@@ -41,9 +41,7 @@ class ServiceView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             except Exception as ex:
-
                 LOGGER.exception('Неожиданная ошибка в функции service')
-
                 return Response(
                     {'error': str(ex)},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -70,6 +68,7 @@ class ScheduleTeacherView(APIView):
                         status=status.HTTP_204_NO_CONTENT,
                     )
                 return Response(result, status=status.HTTP_200_OK)
+
             except ValidationError as e:
                 LOGGER.exception('Ошибка в функции service')
                 return Response(
@@ -77,7 +76,6 @@ class ScheduleTeacherView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             except Exception as ex:
-
                 LOGGER.exception('Неожиданная ошибка в функции service')
 
                 return Response(
@@ -98,8 +96,11 @@ class FileListView(APIView):
 
 
 class FioView(APIView):
+    """"Представление для обработки команды ФИО."""
+
     @staticmethod
     def get(request: Request) -> Response:
+        """Обрабатывает GET-запросы, возвращая нужное ФИО из модели Educators."""
         serializer = FioSerializer(data=request.query_params)
         if serializer.is_valid():
             fio = serializer.validated_data['fio']
@@ -110,7 +111,6 @@ class FioView(APIView):
                         {'error': 'No data returned from service.'},
                         status=status.HTTP_204_NO_CONTENT,
                     )
-
                 return Response(result, status=status.HTTP_200_OK)
 
             except ValidationError as e:
@@ -121,7 +121,6 @@ class FioView(APIView):
                 )
             except Exception as ex:
                 LOGGER.exception('Неожиданная ошибка в функции service')
-
                 return Response(
                     {'error': str(ex)},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,

@@ -61,14 +61,12 @@ def get_filenames() -> list[dict]:
 
 def download_file(file_id: str, drive_service: Any) -> BytesIO:
     """Скачивает файл с Google Drive."""
-
     request = drive_service.files().get_media(fileId=file_id)
     return BytesIO(request.execute())
 
 
 def process_excel(file_content: BytesIO, group_name: str) -> list[tuple[str, str | int, str, bool]]:
     """Обрабатывает содержимое Excel файла, возвращая список данных для заданной группы."""
-
     wb = openpyxl.load_workbook(file_content)
     results = []
 
@@ -92,7 +90,6 @@ def process_excel2(
 
 ) -> list[tuple[str, str | int, str, str, bool]]:
     """Обрабатывает содержимое Excel файла, возвращая список данных для заданного преподавателя."""
-
     wb = openpyxl.load_workbook(file_content)
     results = []
     teacher_last_name = teacher_name.strip().lower()
@@ -117,7 +114,6 @@ def process_excel2(
 
 def form_schedule(schedule: str) -> str:
     """Формирует текст расписания, добавляя к каждому занятию время его проведения."""
-
     schedule_text = schedule.split('\n')
     class_hour_day = any('Классный час' in line for line in schedule_text)
 
@@ -144,7 +140,6 @@ def form_schedule(schedule: str) -> str:
 
 def service(name: str, group: str) -> str:
     """Предоставляет расписание для заданной группы."""
-
     files = get_filenames()
 
     chosen_file_name = name
@@ -185,7 +180,6 @@ def service(name: str, group: str) -> str:
 
 def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     """Предоставляет расписание для заданного преподавателя."""
-
     files = get_filenames()
     chosen_file_name = name
     chosen_file = None
@@ -219,12 +213,12 @@ def search_schedule_by_teacher(name: str, teacher_name: str) -> str:
     return form_schedule(message2)
 
 
-def get_fio(value):
+def get_fio(value: str) -> str:
     """Предоставляет ФИО для заданной пользователем фамилии преподавателя."""
-
     try:
         educator = Educator.objects.get(last_name__icontains=value.capitalize())
-        return f'{educator.last_name} {educator.first_name} {educator.middle_name}'
     except Educator.DoesNotExist:
         return 'Неверно введена фамилия преподавателя!'
+    else:
+        return f'{educator.last_name} {educator.first_name} {educator.middle_name}'
 
