@@ -18,5 +18,6 @@ class ScheduleTeacherSeriaizer(serializers.Serializer):
 
 
 class FioSerializer(serializers.Serializer):
+    """Сериализатор для запросов ФИО преподавателя."""
 
     fio = serializers.CharField()
